@@ -19,5 +19,9 @@ module RubyGettingStarted
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    config.SLACK_CLIENT_ID = '2928918807.15089572695'
+    config.SLACK_CLIENT_SECRET = '52fba5c0ec9fc76475676e51b8cd314b'
+    config.SLACK_SCOPE = 'im:read,im:history,users:read'
   end
 end

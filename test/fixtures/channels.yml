@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  s_id: 
+  user_id: 
+  created: 1
+
+two:
+  s_id: 
+  user_id: 
+  created: 1

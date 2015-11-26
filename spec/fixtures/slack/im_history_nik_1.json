@@ -1,0 +1,680 @@
+{
+    "ok": true,
+    "messages": [
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Thanks :p",
+            "ts": "1448071794.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "yes I will",
+            "ts": "1448071591.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "By any chance would you be able to add your goals to small improvements?",
+            "ts": "1448066552.000016"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "in case we decide to have one",
+            "ts": "1448054113.000014"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "also a technical advisor expectations",
+            "edited": {
+                "user": "U02TAT0PT",
+                "ts": "1448054125.000000"
+            },
+            "ts": "1448054110.000013"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "we need to come up with a list of questions we want to ask these guys",
+            "ts": "1448054099.000012"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Sounds good.",
+            "ts": "1448054082.000011"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "You are hookin it up",
+            "ts": "1448054078.000010"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "okay cool, I\u2019ll setup a time on one of those days",
+            "ts": "1448054077.000009"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Dec 4th evening is the TINT holiday party, but besides that I have nothing in my calendar",
+            "ts": "1448054048.000008"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "does that work for you?",
+            "ts": "1448054010.000006"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "dec 3rd or 4th works for him",
+            "edited": {
+                "user": "U02TAT0PT",
+                "ts": "1448054019.000000"
+            },
+            "ts": "1448054002.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "he reached back",
+            "ts": "1448053997.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "I also agree that we should pair up and divvy up action items",
+            "ts": "1448053810.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "That's awesome that you pinged zach holman :thumbsup:",
+            "ts": "1448053790.000002"
+        },
+        {
+            "type": "message",
+            "subtype": "file_share",
+            "text": "<@U02TBKX45|ryo> uploaded a file: <https:\/\/tintup.slack.com\/files\/ryo\/F0EV30FB9\/tint_sauce_labs_customer_review.docx|sauce labs case study approval> and commented: nik, before they publish this wanted to pass it by you too",
+            "file": {
+                "id": "F0EV30FB9",
+                "created": 1448001210,
+                "timestamp": 1448001210,
+                "name": "Tint_Sauce Labs_Customer review.docx",
+                "title": "sauce labs case study approval",
+                "mimetype": "application\/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "filetype": "docx",
+                "pretty_type": "Word Document",
+                "user": "U02TBKX45",
+                "editable": false,
+                "size": 20409,
+                "mode": "hosted",
+                "is_external": false,
+                "external_type": "",
+                "is_public": false,
+                "public_url_shared": false,
+                "display_as_bot": false,
+                "username": "",
+                "url": "https:\/\/slack-files.com\/files-pub\/T02TAT0PR-F0EV30FB9-a64cbfd4c5\/tint_sauce_labs_customer_review.docx",
+                "url_download": "https:\/\/slack-files.com\/files-pub\/T02TAT0PR-F0EV30FB9-a64cbfd4c5\/download\/tint_sauce_labs_customer_review.docx",
+                "url_private": "https:\/\/files.slack.com\/files-pri\/T02TAT0PR-F0EV30FB9\/tint_sauce_labs_customer_review.docx",
+                "url_private_download": "https:\/\/files.slack.com\/files-pri\/T02TAT0PR-F0EV30FB9\/download\/tint_sauce_labs_customer_review.docx",
+                "permalink": "https:\/\/tintup.slack.com\/files\/ryo\/F0EV30FB9\/tint_sauce_labs_customer_review.docx",
+                "permalink_public": "https:\/\/slack-files.com\/T02TAT0PR-F0EV30FB9-a64cbfd4c5",
+                "channels": [
+
+                ],
+                "groups": [
+
+                ],
+                "ims": [
+                    "D02TBKX49"
+                ],
+                "comments_count": 1,
+                "initial_comment": {
+                    "id": "Fc0EV2RTFG",
+                    "created": 1448001210,
+                    "timestamp": 1448001210,
+                    "user": "U02TBKX45",
+                    "comment": "nik, before they publish this wanted to pass it by you too"
+                }
+            },
+            "user": "U02TBKX45",
+            "upload": true,
+            "display_as_bot": false,
+            "username": "<@U02TBKX45|ryo>",
+            "bot_id": null,
+            "ts": "1448001211.000010"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "No, we can talk about it tomorrow",
+            "ts": "1447991090.000009"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "Is this question answered - how would it end up creating multiple social feeds before?",
+            "ts": "1447987833.000008"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "I\u2019m also thinking for action items after a 1-on-1, we should assemble and divide tasks instead of working on it separately.",
+            "ts": "1447987343.000007"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Alright, sounds good. I used <http:\/\/assistant.to|assistant.to> to help me schedule them",
+            "ts": "1447987190.000006"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "I will be doing my 1-on-1\u2019s during the first week of december",
+            "ts": "1447987167.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "hey ryo I don\u2019t think I can do my 1-on-1 next week because a lot of them are ooo",
+            "ts": "1447987155.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "sorry I missed this",
+            "ts": "1447987054.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Nik, for your PR, how would it end up creating multiple social feeds before?",
+            "ts": "1447972074.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "it is resolved, i archived",
+            "ts": "1447876600.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "may be ask john to see if they are all resolved?",
+            "ts": "1447874941.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Nik, what should we do with this one?<https:\/\/www.pivotaltracker.com\/story\/show\/102106668>",
+            "ts": "1447874911.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Which you can use if you would like to save some time.",
+            "ts": "1447787340.000016"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Nik, I'm sending you an email that I used as the template for my 1:1's to get people prepared for it",
+            "ts": "1447787318.000015"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Sounds good :thumbsup:",
+            "ts": "1447783534.000014"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "yes I will",
+            "ts": "1447783522.000013"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "And send out cal invites?",
+            "ts": "1447783518.000012"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "You'll set it up with rocco?",
+            "ts": "1447783508.000011"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Yes, 4:30pm sounds good.",
+            "ts": "1447783495.000010"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "may be around 4:30pm?",
+            "ts": "1447783170.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "do you want to talk about senior engineers today",
+            "ts": "1447783165.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "yep that does work",
+            "ts": "1447783155.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Nik, I made a randomized list for our 1:1's\n\nMe:\nAli\nDan\nAmrit\nJoey\nRo\nAlice\nYang\n\nYou:\nRocco\nDaniel\nLukas\nTony\nBrett\nJoel\nJon\n\nDoes that work?",
+            "ts": "1447783056.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "yep",
+            "ts": "1447714097.000014"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "is that okay?",
+            "ts": "1447714093.000013"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "I will ask the happiness team to refer to the document for further discussions",
+            "ts": "1447714090.000012"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "I\u2019m going to say the bugs team will be syncing up with Jon and coming up with action items and root causes",
+            "ts": "1447714078.000011"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "<https:\/\/tintup.hackpad.com\/Tina-Sequeira-Event-Report-lILcdTP6OgD>",
+            "ts": "1447714061.000010"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Sounds good. Send me the link to the hackpad when you are done and I can sit down with Jon to learn more.",
+            "ts": "1447713374.000009"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "Can you gather feedback on each of the bullet points so that the happiness team knows what happened ",
+            "ts": "1447713290.000008"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "Okay I'll add it to hackpad ",
+            "ts": "1447713277.000007"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "No need for other teams to get context on something they're not going to work on.",
+            "ts": "1447713173.000006"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "A lot of these fall into bugs, which is My\/Yang\/Dan's group. We should handle it.",
+            "ts": "1447713146.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Yeah, that sounds good. Not sure if team meeting is the best place to discuss it since our group is too big to really make any progress on specifics. I think it would be more efficient to break their report card into specific issues and see which group that falls into",
+            "ts": "1447713113.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "and discuss it during our team meeting",
+            "ts": "1447712828.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "should I add the email brandon sent to our product\/ incident reports?",
+            "ts": "1447712815.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "I put them in by backpaclk",
+            "ts": "1447275586.000006"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "yes",
+            "ts": "1447275537.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "can you pick up business cards from my desk for tomorrow?",
+            "ts": "1447275532.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "yes",
+            "ts": "1447275521.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "are you at the office?",
+            "ts": "1447275303.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "kk",
+            "ts": "1447195775.000010"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "give me few mins, working on something right now",
+            "ts": "1447195740.000009"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "14 folks, 7 for each of us. Want first pick?",
+            "ts": "1447195700.000008"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "<https:\/\/tintcofounder.hackpad.com\/1-on-1-Notes-H457GA6aWT8>",
+            "ts": "1447195672.000007"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Shall we divvy up 1:1 for nov?",
+            "ts": "1447195130.000006"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "okay",
+            "ts": "1447181049.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "*lounge",
+            "ts": "1447181040.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Come into the conference room?",
+            "ts": "1447181035.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "can you loop me in on what\u2019s going on?",
+            "ts": "1447181018.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Tomorrow let's schedule 1:1's together",
+            "ts": "1447128252.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "I did not. That's a good call. Let's set up a time this week to do it?",
+            "ts": "1447095863.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "did you talk to rocco about senior engineer expectations?",
+            "ts": "1447094226.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "okay thanks",
+            "ts": "1446757249.000022"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Here is the public S3 url to the file: <https:\/\/s3-us-west-1.amazonaws.com\/hypes-images\/nik\/PoweredUpLIVE_2015-04-14.mp3>",
+            "attachments": [
+                {
+                    "audio_url": "https:\/\/s3-us-west-1.amazonaws.com\/hypes-images\/nik\/PoweredUpLIVE_2015-04-14.mp3",
+                    "title": "John Schrup",
+                    "author_name": "PoweredUp",
+                    "fallback": "John Schrup by PoweredUp",
+                    "id": 1
+                }
+            ],
+            "ts": "1446757148.000020"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "also trying to mock it to see if that works",
+            "ts": "1446757005.000019"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "okay cool",
+            "ts": "1446756998.000018"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "should be done in a couple mins",
+            "ts": "1446756996.000017"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "upload 20% complete",
+            "ts": "1446756992.000016"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "kk",
+            "ts": "1446756986.000015"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "for a test case using thumbnailer",
+            "ts": "1446756982.000014"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "What's the context on this?",
+            "ts": "1446756938.000013"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "okay as long as the file doesn\u2019t change",
+            "ts": "1446756792.000012"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Can I use filepicker to upload it to s3",
+            "ts": "1446756778.000011"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "no permanent",
+            "ts": "1446756758.000010"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "do you just need to upload it to a url temporarily?",
+            "ts": "1446756749.000009"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "cool thanks",
+            "ts": "1446756683.000008"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "ok",
+            "ts": "1446756596.000007"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "and make that url public",
+            "ts": "1446756574.000006"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "I\u2019m on the flight and the internet is bad",
+            "ts": "1446756568.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "<http:\/\/www.toginet.com\/podcasts\/poweredup\/PoweredUpLIVE_2015-04-14.mp3>",
+            "attachments": [
+                {
+                    "audio_url": "http:\/\/www.toginet.com\/podcasts\/poweredup\/PoweredUpLIVE_2015-04-14.mp3",
+                    "title": "John Schrup",
+                    "author_name": "PoweredUp",
+                    "fallback": "John Schrup by PoweredUp",
+                    "id": 1
+                }
+            ],
+            "ts": "1446756561.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "can you upload this file to s3?",
+            "ts": "1446756560.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "yes",
+            "ts": "1446580504.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "So twitter search is only used for first pull and everything else is gnip?",
+            "ts": "1446580494.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "twitter search for the first pull",
+            "ts": "1446580468.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Nik, is the twitter search api still used to pull in tweets, or is everything through gnip?",
+            "ts": "1446580456.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "Throwing this together as some notes on the offsite: <https:\/\/tintup.hackpad.com\/Engineering-Offsite-Summary-11-2-15-P2txGZOBle1>",
+            "ts": "1446516767.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "kk, sounds good",
+            "ts": "1446488027.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "I'll call them just to make sure ",
+            "ts": "1446487640.000007"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "But since we're heading around 2:30 it shouldn't be a problem ",
+            "ts": "1446487620.000006"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "We should get a headcount and reserve though since sometimes they are crowded but Monday will probably help us. ",
+            "ts": "1446487486.000005"
+        },
+        {
+            "type": "message",
+            "user": "U02TBKX45",
+            "text": "I like the idea. It has been awhile since the engineering team has done something together outside of work. ",
+            "ts": "1446487404.000004"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "Your thoughts?",
+            "ts": "1446487299.000003"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "Hey planning to head to bowling after for our offsite ",
+            "ts": "1446487293.000002"
+        },
+        {
+            "type": "message",
+            "user": "U02TAT0PT",
+            "text": "tim\u2019s desk?",
+            "ts": "1446246684.000003"
+        }
+    ],
+    "has_more": true
+}

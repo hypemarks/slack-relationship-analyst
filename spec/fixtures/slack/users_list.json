@@ -1,0 +1,90 @@
+{
+    "ok": true,
+    "members": [
+        {
+            "id": "U02TAT0PT",
+            "team_id": "T02TAT0PR",
+            "name": "nikhil",
+            "deleted": false,
+            "status": null,
+            "color": "9f69e7",
+            "real_name": "nikhil aitharaju ----",
+            "tz": "America\/Los_Angeles",
+            "tz_label": "Pacific Standard Time",
+            "tz_offset": -28800,
+            "profile": {
+                "first_name": "nikhil aitharaju",
+                "last_name": "----",
+                "skype": "niksaith",
+                "phone": "2134004021",
+                "title": "Software Engineer",
+                "fields": {
+                    "Xf0DAG4PRP": {
+                        "value": "niksaith",
+                        "alt": ""
+                    }
+                },
+                "real_name": "nikhil aitharaju ----",
+                "real_name_normalized": "nikhil aitharaju ----",
+                "email": "nik@tintup.com",
+                "image_24": "https:\/\/secure.gravatar.com\/avatar\/db1df167f9226e5f661ad91a1f167c4f.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0026-24.png",
+                "image_32": "https:\/\/secure.gravatar.com\/avatar\/db1df167f9226e5f661ad91a1f167c4f.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0026-32.png",
+                "image_48": "https:\/\/secure.gravatar.com\/avatar\/db1df167f9226e5f661ad91a1f167c4f.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0026-48.png",
+                "image_72": "https:\/\/secure.gravatar.com\/avatar\/db1df167f9226e5f661ad91a1f167c4f.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0026-72.png",
+                "image_192": "https:\/\/secure.gravatar.com\/avatar\/db1df167f9226e5f661ad91a1f167c4f.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F7fa9%2Fimg%2Favatars%2Fava_0026-192.png",
+                "image_512": "https:\/\/secure.gravatar.com\/avatar\/db1df167f9226e5f661ad91a1f167c4f.jpg?s=512&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F7fa9%2Fimg%2Favatars%2Fava_0026-512.png"
+            },
+            "is_admin": true,
+            "is_owner": true,
+            "is_primary_owner": true,
+            "is_restricted": false,
+            "is_ultra_restricted": false,
+            "is_bot": false,
+            "has_2fa": true,
+            "two_factor_type": "app"
+        },
+        {
+            "id": "U02TBKX45",
+            "team_id": "T02TAT0PR",
+            "name": "ryo",
+            "deleted": false,
+            "status": null,
+            "color": "e96699",
+            "real_name": "Ryo Chiba",
+            "tz": "America\/Los_Angeles",
+            "tz_label": "Pacific Standard Time",
+            "tz_offset": -28800,
+            "profile": {
+                "first_name": "Ryo",
+                "last_name": "Chiba",
+                "skype": "ryochiba",
+                "phone": "605-593-2416",
+                "title": "dev",
+                "fields": {
+                    "Xf0DAG4PRP": {
+                        "value": "ryochiba",
+                        "alt": ""
+                    }
+                },
+                "image_24": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_24.jpg",
+                "image_32": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_32.jpg",
+                "image_48": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_48.jpg",
+                "image_72": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_72.jpg",
+                "image_192": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_192.jpg",
+                "image_512": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_512.jpg",
+                "image_1024": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_1024.jpg",
+                "image_original": "https:\/\/avatars.slack-edge.com\/2015-11-09\/14227596932_12e6ad29f827d59ca8f5_original.jpg",
+                "real_name": "Ryo Chiba",
+                "real_name_normalized": "Ryo Chiba",
+                "email": "ryo@tintup.com"
+            },
+            "is_admin": true,
+            "is_owner": true,
+            "is_primary_owner": false,
+            "is_restricted": false,
+            "is_ultra_restricted": false,
+            "is_bot": false,
+            "has_2fa": false
+        }
+    ]
+}
