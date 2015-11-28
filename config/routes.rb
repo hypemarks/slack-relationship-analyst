@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get 'welcome/oauth_redir' => 'welcome#oauth_redir'
+  get 'welcome/logout' => 'welcome#logout'
   get 'user/sync_messages' => 'user#sync_messages'
+  get 'user/message_count' => 'user#message_count'
+  get 'user/details' => 'user#details'
+  get 'graph' => 'graph#generate_graph'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

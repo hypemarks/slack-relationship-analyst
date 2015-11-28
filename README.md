@@ -1,4 +1,4 @@
-# Relationship Analyzer
+# Relationship Analyst
 
 Log in via slack, and see a force directed graph of team members based on their DMs. 
 

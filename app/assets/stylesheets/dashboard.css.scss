@@ -1,0 +1,79 @@
+html, body, #application-holder, .container-fluid, .row-main, .GraphViewHolder, .GraphView, #info-container, #graph-container, .infoPanelBox{
+    height:100%;
+}
+.container-fluid{
+    padding:0;
+}
+
+.update-message-box{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 143px;
+}
+
+#info-container{
+    &{
+        background-color:#323637;
+        padding:0;
+        overflow: scroll;
+    }
+
+    .loader{
+        top: 50%;
+        position: absolute;
+        margin-top: -48px;
+        left: 50%;
+        margin-left: -48px;
+    }
+
+    .user-details-panel{
+        padding: 40px 40px;
+        color: white;
+    }
+
+    .user-details-panel-top-text, .user-details-panel-avatar{
+        float: left;
+    }
+
+    .user-details-panel-top-text{
+        padding-left: 20px;
+    }
+
+    .user-details-panel-avatar{
+        width:100px;
+    }
+
+    .teammate-item{
+        margin-top:10px;
+    }
+
+    .teammate-item-avatar{
+        width:50px;
+    }
+
+    .teammate-item-name, .teammate-item-count{
+        display: inline-block;
+        margin-left: 10px;
+        width: 100px;
+    }
+
+    .teammate-item-name{
+
+    }
+
+    .teammate-item-count{
+
+    }
+
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}

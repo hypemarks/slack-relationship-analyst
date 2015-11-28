@@ -1,1 +1,337 @@
-You are logged in as <%= session[:user_id] %>
+  <%= javascript_include_tag  'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js' %>
+  <%= javascript_include_tag  'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js' %>
+  <%= javascript_include_tag  'https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js' %>
+
+  <div id="application-holder"></div>
+
+  <script>
+    RA = {};
+    RA.user_id = <%= session[:user_id]%>;
+    RA.current_user = <%= "#{@user.to_json}".html_safe %>;
+  </script>
+
+  <script type="text/babel">
+    $(document).ready(function(){
+        
+        var Loader = React.createClass({
+          render: function(){
+            return (
+              <div className="loader">
+                <img className="switch-icon loader-icon spinning-cog" src="http://pasqualevitiello.github.io/Tumblr-Style-Cog-Spinners/cogs/cog23.svg" />
+              </div>
+            );
+          }
+        });
+
+        // a module that is in charge of updating messages and displaying load state
+        var UpdateMessagesBox = React.createClass({
+          updateMessages: function(){
+            $.ajax({
+              url: '/user/sync_messages?user_id='+RA.user_id,
+              dataType: 'json',
+              cache: false,
+              success: function(data) {
+                console.log('messages successfully updated!');
+                window.clearInterval(this.progressInterval);
+                this.setState({'messages_loaded': undefined});
+              }.bind(this),
+              error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+              }.bind(this)
+            });
+            this.setState({'messages_loaded': 0});
+
+            this.progressCounter = 0;
+            this.initialMessageCount = 0;
+
+            this.progressInterval = window.setInterval(function(){
+              $.ajax({
+                url: '/user/message_count?user_id='+RA.user_id,
+                dataType: 'json',
+                cache: false,
+                success: function(data) {
+
+                  if(this.progressCounter === 0){
+                    this.initialMessageCount = data.message_count;
+                  }
+
+                  this.setState({
+                    'messages_loaded': data.message_count - this.initialMessageCount
+                  });
+
+                  this.progressCounter++;
+                }.bind(this)
+              });
+            }.bind(this), 2000);
+          },
+          getInitialState: function() {
+            return {data: []};
+          },
+          render: function() {
+
+            var progressHolderStyle = {'display': (!_.isUndefined(this.state.messages_loaded))? 'block' : 'none'}
+            var buttonStyle = {'display': (!_.isUndefined(this.state.messages_loaded))? 'none' : 'block'}
+            var progressStyle = {
+              width: (((this.progressCounter * 2) < 100) ? this.progressCounter * 2 : '100') + '%',
+            };
+
+            return (
+              <div className="update-message-box">
+                <button className="btn btn-primary" onClick={this.updateMessages} style={buttonStyle}>Update Messages</button>
+                <div className="progress" style={progressHolderStyle}>
+                  <div className="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{progress}" aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
+                    {this.state.messages_loaded} messages loaded
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        });
+
+        var TeammateItem = React.createClass({
+          render: function(){
+            return(
+              <div className="teammate-item">
+                <img className="teammate-item-avatar" src={this.props.data.user.avatar} />
+                <div className="teammate-item-name">{this.props.data.user.name}</div>
+                <div className="teammate-item-count">{this.props.data.count}</div>
+              </div>
+            );
+          }
+        });
+
+        var UserDetailsPanel = React.createClass({
+          getInitialState: function() {
+            return {data: []};
+          },
+          render: function(){
+
+            var view = <Loader />;
+            if(this.props.data.user){
+              var teammateNodes = this.props.data.top_teammates.map(function(teammate){
+                return(
+                  <TeammateItem data={teammate} key={teammate.user.id} />
+                );
+              });
+
+              var view = <div className="user-details-panel">
+                            <div className="user-details-panel-top clearfix">
+                              <img className="user-details-panel-avatar" src={this.props.data.user.avatar} />
+                              <div className="user-details-panel-top-text">
+                                <h2>{this.props.data.user.name}</h2>
+                                <h4>{this.props.data.user.email}</h4>
+                              </div>
+                            </div>
+                            <h3>Direct Messages</h3>
+                            <div>
+                              { teammateNodes }
+                            </div>
+                         </div>
+            }
+                      
+
+            return (
+              <div>
+                { view }
+              </div>
+            );
+          }
+        });
+
+        var InfoPanelBox = React.createClass({
+          loadUserDetails: function(user_id) {
+            $.ajax({
+              url: '/user/details?user_id='+user_id,
+              dataType: 'json',
+              cache: false,
+              success: function(data) {
+                this.setState({data: data});
+              }.bind(this),
+              error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+              }.bind(this)
+            });
+          },
+          getInitialState: function() {
+            return {data: []};
+          },
+          componentDidMount: function() {
+            this.loadUserDetails(RA.user_id);
+            $(RA).bind('show-user-details', function(e,details){
+              this.loadUserDetails(details.id);
+            }.bind(this));
+          },
+          render: function() {
+            return (
+              <div className="infoPanelBox">
+                <UserDetailsPanel data={this.state.data} />
+              </div>
+            );
+          }
+        });
+
+
+        var d3Chart = {};
+
+        d3Chart.create = function(el, props, state) {
+          this.update(el, props, state);
+        };
+
+        d3Chart.update = function(el, props, state) {
+          console.log(el,props,state);
+          var width = props.width,
+              height = props.height,
+              data_links = _.filter(props.data.links, function(link){return link.value > 5});
+
+          var color = d3.scale.category20();
+
+          var force = d3.layout.force()
+              .charge(-120)
+              .linkDistance(100)
+              .size([width, height]);
+
+          var svg = d3.select(el).append("svg")
+              .attr("width", width)
+              .attr("height", height);
+
+          force
+              .nodes(props.data.nodes)
+              .links(data_links)
+              .start();
+
+          var link_max_value = _.max(data_links, function(link){ return link.value }).value;
+          var link_stroke_max = 10;
+
+          var link = svg.selectAll(".link")
+              .data(data_links)
+            .enter().append("line")
+              .attr("class", "link")
+              .style("stroke-width", function(d) { return (d.value/link_max_value)*link_stroke_max; });
+
+          var node = svg.selectAll(".node")
+              .data(props.data.nodes)
+            .enter().append("circle")
+              .attr("class", "node")
+              .attr("r", 10)
+              .style("fill", function(d) { return color(d.id); })
+              .call(force.drag);
+
+
+          node.append("title")
+              .text(function(d) { return d.name; });
+
+          node.on("mouseover",function(){ d3.select(this).transition().attr("r","20") });
+          node.on("mouseout",function(){
+            if( !/active/.test(d3.select(this).attr('class')) ){
+              d3.select(this).transition().attr("r","10");
+            } 
+          });
+          node.on("click",function(d){
+            d3.selectAll('circle').attr('class', 'node').attr("r","10");
+            d3.select(this).attr('class', 'node active').attr('r','20');
+            $(RA).trigger('show-user-details', [d]);
+          });
+
+          force.on("tick", function() {
+            link.attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+
+            node.attr("cx", function(d) { return d.x; })
+                .attr("cy", function(d) { return d.y; });
+          });
+        };
+
+        d3Chart.destroy = function(el) {
+          // Any clean-up would go here
+          // in this example there is nothing to do
+        };
+
+        var GraphView = React.createClass({
+          propTypes: {
+            data: React.PropTypes.object
+          },
+
+          componentDidMount: function() {
+            var el = ReactDOM.findDOMNode(this);
+            d3Chart.create(el, this.props, this.state)
+          },
+
+          componentDidUpdate: function() {
+            var el = ReactDOM.findDOMNode(this);
+            d3Chart.update(el, this.props, this.state);
+          },
+
+          componentWillUnmount: function() {
+            var el = ReactDOM.findDOMNode(this);
+            d3Chart.destroy(el);
+          },
+
+          render: function() {
+            return (
+              <div className="GraphView"></div>
+            );
+          }
+        });
+
+        var GraphViewHolder = React.createClass({
+          propTypes: {
+            data: React.PropTypes.object
+          },
+
+          loadGraph: function(){
+            $.ajax({
+              url: this.props.url+'?team_id='+RA.current_user.team_id,
+              dataType: 'json',
+              cache: false,
+              success: function(data) {
+                this.setState({data: data});
+              }.bind(this),
+              error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+              }.bind(this)
+            });
+          },
+
+          componentDidMount: function() {
+            this.loadGraph();
+            this.height = $(ReactDOM.findDOMNode(this)).height();
+            this.width = $(ReactDOM.findDOMNode(this)).width();
+          },
+
+          render: function() {
+            return (
+              <div className="GraphViewHolder">
+              { (this.state && this.state.data)
+                ? <GraphView data={this.state.data} height={this.height} width={this.width} />
+                : <Loader />
+              }
+              </div>
+            );
+          }
+        });
+
+        var App = React.createClass({
+          render: function() {
+            return (
+              <div className="container-fluid">
+                  <div className="row row-main">
+                      <div className="col-md-8" id="graph-container">
+                          <GraphViewHolder url="/graph" />
+                      </div>
+                      <div className="col-md-4" id="info-container">
+                          <InfoPanelBox url="/user/message_count" />
+                      </div>
+                  </div>
+                  <UpdateMessagesBox />
+              </div>
+            );
+          }
+        });
+
+        ReactDOM.render(<App />, $('#application-holder')[0]);
+
+
+    });
+  </script>

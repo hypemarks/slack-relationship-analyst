@@ -8,7 +8,7 @@ describe UserController do
     }
     let(:channel){
         im_list = JSON.parse(File.new('spec/fixtures/slack/im_list.json').read)
-        channel = Channel.new(s_id: im_list['ims'][0]['id'], user_id: user.id, created: im_list['ims'][0]['created'])
+        channel = Channel.new(s_id: im_list['ims'][0]['id'], created: im_list['ims'][0]['created'])
         channel.save
         return channel
     }
@@ -40,7 +40,11 @@ describe UserController do
     describe '#sync_messages' do
 
         subject{ get :sync_messages, params }
-
+        let!(:nik_user){
+            nik_user = User.find_or_initialize_by(s_id: 'U02TAT0PT')
+            nik_user.save
+            return nik_user
+        }
         let(:params){
             {
                 user_id: user.id
@@ -50,7 +54,10 @@ describe UserController do
         it "syncs 2 pages of messages" do
             subject
             expect(JSON.parse(response.body)).to eq({"success" => "114 messages added"})
-            expect(Message.count(user_id: user.id)).to eq(114)
+            expect(Message.where(user_id_to: user.id).length).to eq(56)
+            expect(Message.where(user_id_from: user.id).length).to eq(58)
+            expect(Message.where(user_id_to: nik_user.id).length).to eq(58)
+            expect(Message.where(user_id_from: nik_user.id).length).to eq(56)
         end
 
         context 'when user_id is not passed in' do
@@ -69,17 +76,96 @@ describe UserController do
                 im_history['messages'][nth_message_index]['ts']
             }
             let!(:existing_message){
-                message = Message.new(user_id: user.id, channel_id: channel.id, ts: existing_timestamp, text: "existing message")
+                message = Message.new(user_id_to: user.id, channel_id: channel.id, ts: existing_timestamp, text: "existing message")
                 message.save
                 return message
             }
             it 'should only save up to the existing message' do
                 subject
                 expect(JSON.parse(response.body)).to eq({"success" => "#{nth_message_index} messages added"})
-                expect(Message.count(user_id: user.id)).to eq(nth_message_index+1)
+                expect( Message.where(user_id_to: user.id).length + Message.where(user_id_from: user.id).length ).to eq(nth_message_index+1)
             end
         end
 
+    end
+
+    describe '#message_count' do
+
+        subject{ get :message_count, params }
+
+        let(:params){
+            {
+                user_id: user.id
+            }
+        }
+
+        let(:user){ create(:user, name: "user") }
+        let!(:messages){ [
+            create(:message, user_id_to: user.id),
+            create(:message, user_id_to: user.id),
+            create(:message, user_id_from: user.id)
+        ] }
+
+        let(:expected_response){
+            {
+                "message_count" => 3
+            }
+        }
+
+        it 'returns the message count' do
+            subject
+            expect(JSON.parse(response.body)).to eq(expected_response)
+        end
+
+    end
+
+    describe '#details' do
+        subject{ get :details, params }
+
+        let(:params){
+            {
+                user_id: user_1.id
+            }
+        }
+
+        let(:user_1){ create(:user, name: "user_1") }
+        let(:user_2){ create(:user, name: "user_2") }
+        let(:user_3){ create(:user, name: "user_3") }
+        let!(:messages){ [
+            create(:message, user_id_to: user_1.id, user_id_from: user_2.id),
+            create(:message, user_id_to: user_1.id, user_id_from: user_2.id),
+            create(:message, user_id_to: user_2.id, user_id_from: user_1.id),
+            create(:message, user_id_to: user_3.id, user_id_from: user_1.id)
+        ] }
+
+        def user_params user
+          user_hash = user.attributes
+          user_hash.delete("token")
+          user_hash.delete("created_at")
+          user_hash.delete("updated_at")
+          return user_hash
+        end
+
+        let(:expected_response){
+            {
+                'user' => user_params(user_1),
+                'total_to' => 2,
+                'total_from' => 2,
+                'top_teammates' => [
+                    {   "count" => 3,
+                        "user" => user_params(user_2)
+                    },
+                    {   "count" => 1,
+                        "user" => user_params(user_3)
+                    }
+                ]
+            }
+        }
+
+        it 'returns computed details on user' do
+            subject
+            expect(JSON.parse(response.body)).to eq(expected_response)
+        end
     end
 
     after(:each) do

@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
   # GET /welcome
   def index
     if session[:user_id].present?
+        @user = User.find(session[:user_id])
         render 'dashboard'
     else
         render 'index'
@@ -49,6 +50,11 @@ class WelcomeController < ApplicationController
     else
         render :text => "something went wrong authing you"
     end
+  end
+
+  def logout
+    reset_session
+    redirect_to '/'
   end
 
 end

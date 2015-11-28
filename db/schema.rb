@@ -18,27 +18,26 @@ ActiveRecord::Schema.define(version: 20151122191504) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "s_id"
-    t.integer  "user_id"
     t.integer  "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "channels", ["user_id"], name: "index_channels_on_user_id", using: :btree
-
   create_table "messages", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id_to"
+    t.integer  "user_id_from"
     t.integer  "channel_id"
     t.string   "s_type"
     t.float    "ts"
     t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "messages", ["channel_id"], name: "index_messages_on_channel_id", using: :btree
   add_index "messages", ["ts"], name: "index_messages_on_ts", using: :btree
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+  add_index "messages", ["user_id_from"], name: "index_messages_on_user_id_from", using: :btree
+  add_index "messages", ["user_id_to"], name: "index_messages_on_user_id_to", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
