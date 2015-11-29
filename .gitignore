@@ -17,3 +17,5 @@
 
 # Ignore ruby-version
 /.ruby-version
+
+node_modules

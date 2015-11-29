@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :s_id, unique: true
       t.integer :team_id
+      t.integer :color
 
       t.timestamps null: false
     end

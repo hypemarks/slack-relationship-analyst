@@ -14,4 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
+//= require underscore
+//= require d3
+//= require react
+//= require react/react-dom
+//= require react-bootstrap
+//= require react-bootstrap-table.min
+//= require toastr
 

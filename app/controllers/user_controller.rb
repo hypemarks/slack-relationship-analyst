@@ -2,19 +2,54 @@ class UserController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :require_user_id
+  before_action :require_login
+  before_action :require_user_id, except: [:index, :update, :sync_team_messages]
+  before_action :require_user_id_to_have_same_team, except: [:index, :update, :sync_team_messages]
 
-  def require_user_id
-    raise "Please pass in a user_id" if params[:user_id].blank?
-    @user = User.find(params[:user_id])
-    @client = Slack::Web::Client.new(token: @user.token)
+  def require_login
+    raise "Access denied" if session[:user_id].blank?
   rescue Exception => e
     render json: {error: e.message}
   end
 
-  def sync_messages
-    message_count_before = Message.count(user_id: @user.id)
+  def require_user_id
+    raise "Please pass in a user_id" if params[:user_id].blank?
+    @user = User.find(params[:user_id])
+  rescue Exception => e
+    render json: {error: e.message}
+  end
 
+  def require_user_id_to_have_same_team
+    @user = User.find(params[:user_id])
+    raise "Requesting a user whose team is not your team" if @user.team_id != User.find(session[:user_id]).team_id
+  rescue Exception => e
+    render json: {error: e.message}
+  end
+
+  def index
+    users = User.where(team_id: User.find(session[:user_id]).team_id).map{ |user| user_params user }
+    render json: users
+  end
+
+  def update
+    @user = User.find(params[:id])
+    raise "Access denied" if @user.team_id != User.find(session[:user_id]).team_id
+    @user.update(color: params[:color])
+    render json: {success: "Record updated"}
+  rescue Exception => e
+    render json: {error: e.message}
+  end
+
+  # syncs an entire team's messages
+  def sync_team_messages
+    @client = Slack::Web::Client.new(token: @user.token)
+    
+  end
+
+  # syncs a single user's messages
+  def sync_messages
+    @client = Slack::Web::Client.new(token: @user.token)
+    message_count_before = Message.count(user_id: @user.id)
     dm_channels = @client.im_list["ims"]
     dm_channels.each do |dm_channel|
         channel = Channel.find_or_create_by!(s_id: dm_channel["id"], created: dm_channel["created"])
@@ -23,7 +58,6 @@ class UserController < ActionController::Base
 
     message_count_after = Message.count(user_id: @user.id)
     render json: {success: "#{message_count_after - message_count_before} messages added"}
-
   end
 
   def message_count
@@ -32,7 +66,6 @@ class UserController < ActionController::Base
   end
 
   def details
-
     render json: {
       user: user_params(@user),
       total_to: Message.where(user_id_to: @user.id).length,
@@ -78,8 +111,9 @@ class UserController < ActionController::Base
       reached_existing_messages = false
       latest = nil
 
-      # TODO: start counting messages starting on timestamp 1446084795, or oct 29, 2015
-      min_timestamp = 1446084795
+      # Start counting messages 30 days before team was added to system
+      seconds_in_a_month = 2592000
+      min_timestamp = Team.find(@user.team_id).created_at.to_i - seconds_in_a_month
 
       message_data = @client.im_history(channel: channel["s_id"], latest: latest)
       other_user = other_user message_data["messages"]

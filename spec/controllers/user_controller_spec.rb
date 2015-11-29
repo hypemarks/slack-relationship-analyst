@@ -1,8 +1,16 @@
 require 'rails_helper'
 describe UserController do
 
+    def user_params user
+      user_hash = user.attributes
+      user_hash.delete("token")
+      user_hash.delete("created_at")
+      user_hash.delete("updated_at")
+      return user_hash
+    end
+
     let(:team){
-        team = Team.new(s_id: 'T02TAT0PR', name: 'TINT')
+        team = Team.new(s_id: 'T02TAT0PR', name: 'TINT', created_at: '2015-11-26 23:17:30.874969')
         team.save
         return team
     }
@@ -35,6 +43,9 @@ describe UserController do
         stub_request(:post, "https://slack.com/api/im.history").
             with( body: hash_including({latest: '1446246684.000003'}) ).
             to_return(body: im_history_2)
+
+        # log user in as user
+        session[:user_id] = user.id
     end
 
     describe '#sync_messages' do
@@ -138,14 +149,6 @@ describe UserController do
             create(:message, user_id_to: user_3.id, user_id_from: user_1.id)
         ] }
 
-        def user_params user
-          user_hash = user.attributes
-          user_hash.delete("token")
-          user_hash.delete("created_at")
-          user_hash.delete("updated_at")
-          return user_hash
-        end
-
         let(:expected_response){
             {
                 'user' => user_params(user_1),
@@ -162,9 +165,47 @@ describe UserController do
             }
         }
 
+        before(:each) do
+            session[:user_id] = user_1.id
+        end
+
         it 'returns computed details on user' do
             subject
             expect(JSON.parse(response.body)).to eq(expected_response)
+        end
+
+        context 'when a user with invalid team is logged in' do
+
+            it 'returns an error if a user with invalid team is requested' do
+                session[:user_id] = user.id
+                subject
+                expect(JSON.parse(response.body)).to eq({"error" => "Requesting a user whose team is not your team"})
+            end
+
+        end
+    end
+
+    describe '#index' do
+        subject{ get :index }
+        it 'returns an array of all of the users' do
+            subject
+            expect(JSON.parse(response.body)).to eq([user_params(user)])
+        end
+    end
+
+    describe '#update' do
+        subject{ put :update, params }
+        let(:color){ 19 }
+        let(:params){
+            {
+                id: user.id,
+                color: color
+            }
+        }
+        it 'updates the model' do
+            subject
+            user.reload
+            expect(user.color).to eq(color)
         end
     end
 

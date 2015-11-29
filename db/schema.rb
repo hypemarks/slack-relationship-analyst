@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20151122191504) do
     t.string   "email"
     t.string   "s_id"
     t.integer  "team_id"
+    t.integer  "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

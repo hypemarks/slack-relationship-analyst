@@ -46,7 +46,7 @@ class WelcomeController < ApplicationController
         session[:user_id] = @user.id
 
         # Load dashboard
-        render 'dashboard'
+        redirect_to '/'
     else
         render :text => "something went wrong authing you"
     end

@@ -6,10 +6,28 @@ html, body, #application-holder, .container-fluid, .row-main, .GraphViewHolder, 
 }
 
 .update-message-box{
+
+    &{
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: 143px;
+    }
+
+    .progress{
+        height:36px;
+        background-color: #B5B5B5;
+    }
+}
+
+.manage-users-button{
     position: fixed;
     top: 10px;
-    left: 10px;
-    width: 143px;
+    left: 160px;
+}
+
+.editable-user-table-avatar{
+    width: 30px;
 }
 
 #info-container{
@@ -34,6 +52,10 @@ html, body, #application-holder, .container-fluid, .row-main, .GraphViewHolder, 
 
     .user-details-panel-top-text, .user-details-panel-avatar{
         float: left;
+    }
+
+    .user-details-panel-top-text h2{
+        margin-top:0;
     }
 
     .user-details-panel-top-text{
@@ -71,6 +93,11 @@ html, body, #application-holder, .container-fluid, .row-main, .GraphViewHolder, 
 .node {
   stroke: #fff;
   stroke-width: 1.5px;
+}
+
+.node-text{
+    stroke:black;
+    stroke-width: 0.25;
 }
 
 .link {

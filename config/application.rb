@@ -23,5 +23,6 @@ module RubyGettingStarted
     config.SLACK_CLIENT_ID = '2928918807.15089572695'
     config.SLACK_CLIENT_SECRET = '52fba5c0ec9fc76475676e51b8cd314b'
     config.SLACK_SCOPE = 'im:read,im:history,users:read'
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
   end
 end

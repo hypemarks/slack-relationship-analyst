@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'user/details' => 'user#details'
   get 'graph' => 'graph#generate_graph'
 
+  resources :user
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

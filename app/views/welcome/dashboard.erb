@@ -1,5 +1,3 @@
-  <%= javascript_include_tag  'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js' %>
-  <%= javascript_include_tag  'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js' %>
   <%= javascript_include_tag  'https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js' %>
 
   <div id="application-holder"></div>
@@ -13,6 +11,9 @@
   <script type="text/babel">
     $(document).ready(function(){
         
+        var Button = ReactBootstrap.Button;
+        var Modal = ReactBootstrap.Modal;
+
         var Loader = React.createClass({
           render: function(){
             return (
@@ -88,6 +89,140 @@
           }
         });
 
+        var EditableUserTable = React.createClass({
+
+          handleRowUpdated : function(row, cellName, cellValue){
+            var data = {};
+
+            if(cellName === 'color'){
+              cellValue = parseInt(cellValue.split('-')[0],10)
+            }
+
+            data[cellName] = cellValue;
+            $.ajax({
+                type: "PUT",
+                url: '/user/'+row.id,
+                data: data
+            });
+
+            window.setTimeout(function(){
+              toastr.info('User data saved!');
+            },350);
+          },
+
+          render:function(){
+            var cellEditProp = {
+              mode: "click",
+              blurToSave: true,
+              afterSaveCell: this.handleRowUpdated
+            };
+
+            this.colorSettings = {
+              type: 'select',
+              options:{
+                values: [
+                  '0 - dark blue',
+                  '1 - light blue',
+                  '2 - dark orange',
+                  '3 - light orange',
+                  '4 - dark green',
+                  '5 - light green',
+                  '6 - ketchup',
+                  '7 - ketchup+mayo',
+                  '8 - aurora',
+                  '9 - dawn',
+                  '10 - mahogany',
+                  '11 - skin',
+                  '12 - barbie pink',
+                  '13 - 80s barbie pink',
+                  '14 - charcoal',
+                  '15 - meteorite',
+                  '16 - barf',
+                  '17 - light barf',
+                  '18 - aqua',
+                  '19 - baby aqua'
+                ]
+              }
+            };
+
+            var avatarComponent = function(cell){ return '<img class="editable-user-table-avatar" src="'+cell+'" />'; };
+
+            return(
+            <BootstrapTable data={this.props.rows} cellEdit={cellEditProp}>
+              <TableHeaderColumn dataField="id" isKey={true}>ID</TableHeaderColumn>
+              <TableHeaderColumn dataField="avatar" editable={false} dataFormat={avatarComponent} >Avatar</TableHeaderColumn>
+              <TableHeaderColumn dataField="name" editable={false}>Name</TableHeaderColumn>
+              <TableHeaderColumn dataField="email" editable={false}>email</TableHeaderColumn>
+              <TableHeaderColumn dataField="color" editable={this.colorSettings} width={'150'}>color</TableHeaderColumn>
+            </BootstrapTable>
+            )
+
+
+          }
+
+        });
+
+        var ManageUsersModal = React.createClass({
+
+          getInitialState() {
+            return { showModal: false };
+          },
+
+          close() {
+            this.setState({ showModal: false });
+          },
+
+          open() {
+            this.setState({ showModal: true });
+          },
+
+          loadUsers: function(){
+            $.ajax({
+              url: '/user',
+              dataType: 'json',
+              cache: false,
+              success: function(data) {
+                this.setState({rows: data});
+              }.bind(this),
+              error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+              }.bind(this)
+            });
+          },
+
+          componentDidMount: function() {
+            this.loadUsers();
+          },
+
+          render() {
+            return (
+              <div>
+
+                <Button
+                  bsStyle="default"
+                  onClick={this.open}
+                  className="manage-users-button"
+                >
+                  Manage Users
+                </Button>
+
+                <Modal show={this.state.showModal} onHide={this.close}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Manage Users</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <h4>User Details</h4>
+                    <EditableUserTable rows={this.state.rows} />
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button onClick={this.close}>Close</Button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+            );
+          }
+        });
+
         var TeammateItem = React.createClass({
           render: function(){
             return(
@@ -120,6 +255,8 @@
                               <div className="user-details-panel-top-text">
                                 <h2>{this.props.data.user.name}</h2>
                                 <h4>{this.props.data.user.email}</h4>
+                                <h4>Messages Received: {this.props.data.total_to}</h4>
+                                <h4>Messages Sent: {this.props.data.total_from}</h4>
                               </div>
                             </div>
                             <h3>Direct Messages</h3>
@@ -210,25 +347,34 @@
 
           var node = svg.selectAll(".node")
               .data(props.data.nodes)
-            .enter().append("circle")
-              .attr("class", "node")
-              .attr("r", 10)
-              .style("fill", function(d) { return color(d.id); })
+            .enter().append("g")
+              .attr("class", "node")              
               .call(force.drag);
 
+          node.append("circle")
+            .attr("r", 10)
+            .style("fill", function(d) { return color(d.color); })
+
+          node.append("text")
+            .attr("dx", 12)
+            .attr("dy", 12)
+            .attr("class", "node-text")
+            .text(function(d) { return d.name });
 
           node.append("title")
-              .text(function(d) { return d.name; });
+            .text(function(d) { return d.name; });
 
-          node.on("mouseover",function(){ d3.select(this).transition().attr("r","20") });
+          node.on("mouseover",function(){ $(this).find('circle').attr("r","15") });
           node.on("mouseout",function(){
-            if( !/active/.test(d3.select(this).attr('class')) ){
-              d3.select(this).transition().attr("r","10");
+            var circle = $(this).find('circle');
+            if( !/active/.test(circle.attr('class')) ){
+              circle.attr("r","10");
             } 
           });
           node.on("click",function(d){
             d3.selectAll('circle').attr('class', 'node').attr("r","10");
-            d3.select(this).attr('class', 'node active').attr('r','20');
+            $(this).find('circle').attr('class', 'node active').attr('r','15');
+
             $(RA).trigger('show-user-details', [d]);
           });
 
@@ -238,8 +384,7 @@
                 .attr("x2", function(d) { return d.target.x; })
                 .attr("y2", function(d) { return d.target.y; });
 
-            node.attr("cx", function(d) { return d.x; })
-                .attr("cy", function(d) { return d.y; });
+            node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
           });
         };
 
@@ -325,6 +470,7 @@
                       </div>
                   </div>
                   <UpdateMessagesBox />
+                  <ManageUsersModal />
               </div>
             );
           }
